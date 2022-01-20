@@ -5,6 +5,7 @@ import MyPosts from './MyPosts/MyPosts';
 import s from './Profile.module.css';
 
 const Profile = () => {
+  
     return (
       <div>
         <div className={s.profileHeader}>
@@ -13,7 +14,7 @@ const Profile = () => {
           <div className={s.description}>
             ava + description
           </div>
-          <MyPosts/>
+          <MyPosts />
       </div>
     )
 }

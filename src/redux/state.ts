@@ -1,27 +1,27 @@
-type MessageType = {                 //типизируем типы данных которые приходят в store
+export type MessageType = {                 //типизируем типы данных которые приходят в store
     id: number
     message: string
 }
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
-type PostType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-type DialogPageType = {
+export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageBody: string
 }
-type SidebarType = {}
-type RootStoreType = {
+export type SidebarType = {}
+export type RootStoreType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType

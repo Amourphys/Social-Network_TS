@@ -1,8 +1,14 @@
 import React from 'react';
+//import { ProfilePageType } from '../../../redux/state';
 import s from './MyPosts.module.css';
-import MyPost from './Post/MyPost';
+import MyPost from './Post/Post';
 
-const MyPosts = () => {
+/* type MyPostsType ={
+    posts: Array<PostType>
+    newPostText: string
+} */
+const MyPosts = (props: any) => {
+    
     return (
         <div className={s.postWrapper}>
             <h3>My posts</h3>
@@ -19,7 +25,8 @@ const MyPosts = () => {
                 New post
             </div>
             <div className={s.posts}>
-                <MyPost/>
+                <MyPost message='hello' likesCount='14'/>
+                <MyPost message='by by' likesCount='27'/>
                {/* {postsElements} */}
             </div>
         </div>
