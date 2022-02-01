@@ -8,9 +8,16 @@ import MyPost from './Post/Post';
     newPostText: string
 } */
 const MyPosts = (props: any) => {
-    
+
+    let posts = [
+        { id: 1, message: 'Hi, how are you?', likesCount: 12 },
+        { id: 2, message: 'It\'s my first post', likesCount: 14 }
+    ]
+
+    let postsElements = posts.map(p => <MyPost message={p.message} likesCount={p.likesCount} />)
+
     return (
-        <div className={s.postWrapper}>
+        <div className={s.postsWrapper}>
             <h3>My posts</h3>
             <div>
                 <div>
@@ -25,9 +32,7 @@ const MyPosts = (props: any) => {
                 New post
             </div>
             <div className={s.posts}>
-                <MyPost message='hello' likesCount='14'/>
-                <MyPost message='by by' likesCount='27'/>
-               {/* {postsElements} */}
+                {postsElements}
             </div>
         </div>
     );

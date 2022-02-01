@@ -1,6 +1,6 @@
 .app-wrapper {
   min-width: 1400px;
-  min-height: 700px;
+  min-height: 100vh;
   margin: 0 auto;
   display: grid;
   grid-template-areas: "h h""n c";
