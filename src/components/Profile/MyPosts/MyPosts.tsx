@@ -1,31 +1,44 @@
-import React from 'react';
-//import { ProfilePageType } from '../../../redux/state';
+import React, { ChangeEvent } from 'react';
+import { PostType } from '../../../redux/state';
 import s from './MyPosts.module.css';
 import MyPost from './Post/Post';
 
-/* type MyPostsType ={
+type MyPostsType = {
     posts: Array<PostType>
     newPostText: string
-} */
-const MyPosts = (props: any) => {
+    addPost: () => void,
+    onPostChange: (newPost: string) => void
+}
+const MyPosts = (props: MyPostsType) => {
 
-    let posts = [
-        { id: 1, message: 'Hi, how are you?', likesCount: 12 },
-        { id: 2, message: 'It\'s my first post', likesCount: 14 }
-    ]
+    let postsElements = props.posts.map(p => <MyPost message={p.message} likesCount={p.likesCount} id={p.id} />)
+    let newPostElement = React.createRef<HTMLTextAreaElement>()//обязательно прописать <HTMLTextAreaElement>
 
-    let postsElements = posts.map(p => <MyPost message={p.message} likesCount={p.likesCount} />)
+    const onAddPost = () => {
+        // //alert(newPostElement.current && newPostElement.current.value)
+        // //alert(newPostElement.current?.value) //укороченная запись чтоб тайпскрипт не ругался на типизацию
+        // addPost(newPostElement.current ? newPostElement.current.value : '')//укороченная запись
+        props.addPost()
+
+    }
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            props.onPostChange(text);
+            newPostElement.current.value = '';
+        }
+    }
 
     return (
         <div className={s.postsWrapper}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea /* onChange={onPostChange} ref={newPostElement} value={props.newPostText} */></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                 </div>
                 <div>
-                    <button /* onClick={onAddPost} */>Add post</button>
-                    <button>Remove</button>
+                    <button onClick={onAddPost}>Add post</button>
+                    <button>Clear</button>
                 </div>
             </div>
             <div className={s.item}>

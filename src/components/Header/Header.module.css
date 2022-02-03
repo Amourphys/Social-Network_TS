@@ -1,9 +1,122 @@
 .header {
+    display: flex;
     grid-area: h;
     background-color: #61dafb;
+    justify-content: space-between;
+}
+
+.loader_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .logo {
     width: 100px;
     height: 100px;
+}
+
+.title {
+    font-size: 50px;
+    padding-top: 10px;
+    /* display: block;
+    margin: 0 auto; */
+    color: darkorange;
+    text-align: center;
+    text-shadow: 4px 4px 10px red, 0 0 2em blue, 0 0 0.5em blue;
+}
+
+.loader {
+    position: relative;
+}
+
+.outer,
+.middle,
+.inner {
+    border: 3px solid transparent;
+    border-top-color:
+        /* #3cefff */
+        darkorange;
+    border-right-color:
+        /* #3cefff */
+        darkorange;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.outer {
+    width: 3.5em;
+    height: 3.5em;
+    margin-left: -1.75em;
+    margin-top: -1.75em;
+    animation: spin 2s linear infinite;
+}
+
+.middle {
+    width: 2.1em;
+    height: 2.1em;
+    margin-left: -1.05em;
+    margin-top: -1.05em;
+    animation: spin 1.75s linear reverse infinite;
+}
+
+.inner {
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: -0.4em;
+    margin-top: -0.4em;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pulse {
+    display: flex;
+    width: 3.5em;
+    height: 3.5em;
+    border: 3px solid transparent;
+    border-top-color:
+        /* #3cefff */
+        red;
+    border-bottom-color:
+        /* #3cefff */
+        red;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+.pulse:before {
+    content: '';
+    display: block;
+    margin: auto;
+    width: 0.75em;
+    height: 0.75em;
+    border: 3px solid
+        /* #3cefff */
+        red;
+    border-radius: 50%;
+    animation: pulse 1s alternate ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.5);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }

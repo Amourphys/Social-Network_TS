@@ -1,40 +1,25 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+//import React from 'react';
+//import { NavLink } from 'react-router-dom';
+import { DialogPageType } from '../../redux/state';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
-import Messages from './Messages/Messages';
+import Message from './Messages/Message';
 
-const Dialogs = (props: any) => {
+const Dialogs = (props: DialogPageType) => {
 
-    let dialogs = [
-        { id: 1, name: 'Andrey' },
-        { id: 2, name: 'Alex' },
-        { id: 3, name: 'Popandopola' },
-        { id: 4, name: 'Juriy' },
-        { id: 5, name: 'Bonyfacij' },
-        { id: 6, name: 'Sasha' },
-        { id: 7, name: 'Arnold' }
-    ]
-    let messages = [
-        { id: 1, message: 'Hi!' },
-        { id: 2, message: 'Hello' },
-        { id: 3, message: 'Good by' },
-        { id: 4, message: 'IT' },
-        { id: 5, message: 'How are you' },
-        { id: 6, message: 'What is your name?' },
-        { id: 7, message: 'I am dont now' }
-    ]
+    const { dialogs, messages, newMessageBody } = props
 
-    let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
-    let messagesElements = messages.map(m => <Messages message={m.message} id={m.id} />)
 
-    /* let state = props.dialogsPage; */
+    /* let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id} />) */
+    /* let messagesElements = messages.map(m => <Messages message={m.message} id={m.id} />) */
 
-    /* let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />); */
-    /* let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id}/>); */
-    /* let newMessageBody = state.newMessageBody; */
+    /* let state = props.DialogPageType; */
 
-    let onSendMessageClick = () => {
+    let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
+    let messagesElements = messages.map(m => <Message message={m.message} id={m.id} />);
+
+
+    /* let onSendMessageClick = () => {
         props.sendMessage();
     }
 
@@ -42,7 +27,7 @@ const Dialogs = (props: any) => {
         let body = e.target.value;
         props.updateNewMessageBody(body);
     }
-
+ */
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -51,15 +36,15 @@ const Dialogs = (props: any) => {
             <div className={s.messages}>
                 {messagesElements}
             </div>
-            <div>
-                <div>
-                    <textarea /* value={newMessageBody} */ onChange={onNewMessageChange} placeholder="Enter your message"></textarea>
+            {/* <div>
+                {<div>
+                    <textarea  value={newMessageBody}  onChange={onNewMessageChange} placeholder="Enter your message"></textarea>
                 </div>
                 <div>
                     <button onClick={onSendMessageClick}>Send</button>
                     <button>Remove</button>
-                </div>
-            </div>
+                </div>}
+            </div> */}
         </div>
 
     );

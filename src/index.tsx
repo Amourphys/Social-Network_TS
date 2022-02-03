@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import store, { RootStoreType, StoreType } from './redux/state';
 
-ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter> ,
-  document.getElementById('root')
-);
+let rerenderEntireTree = (state: RootStoreType) => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <App state={state} store={store} addPost={store.addPost.bind(store)} updateNewPost={store.onPostChange.bind(store)} />
+    </BrowserRouter>,
+    document.getElementById('root')
+  );
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+rerenderEntireTree(store.getState())
+store.subscribe(rerenderEntireTree)
